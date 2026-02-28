@@ -112,7 +112,7 @@ for i in range(1, 11):
 # After the elbow, WCSS decreases slowly, suggesting diminishing returns
 elbow_data_Dem = pd.DataFrame({"k": range(1, 11), "wcss": wcss})
 fig = px.line(elbow_data_Dem, x="k", y="wcss", title="Elbow Method")
-fig.show()
+fig
 
 # %%
 # Based on the elbow plot, retrain the model with 3 clusters

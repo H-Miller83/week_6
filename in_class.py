@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 df = pd.read_csv("house_votes_Dem.csv", encoding='latin-1')
 # %%
 # take a look at the data
-# df.head()
-df.info()
+df.head()
+#df.info()
 
 # %%
 # separate out the numeric features
@@ -37,8 +37,21 @@ df['cluster'] = model.labels_
 df.head()
 
 # %%
+# for loop to check diff cluster numbers and see how inertia changes
+
+inertias = []
+k_values = range(1,100)
+for k in k_values:
+    model = KMeans(n_clusters=k, random_state=42)
+    model.fit(numeric)
+    inertias.append(model.inertia_)
   
 # %% simple plot of the clusters
-help(plt.scatter)
- 
+# PLotting inertia values --> find elbow
+
+plt.figure(figsize=(10,5))
+plt.plot(k_values, inertias, marker='o')
+plt.xlabel("Number of Clusters (k)") 
+plt.ylabel("Inertia")
+plt.show()
 # %%
